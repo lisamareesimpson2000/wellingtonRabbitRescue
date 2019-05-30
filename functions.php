@@ -16,19 +16,15 @@ function register_my_menu() {
 }
 add_action( 'init', 'register_my_menu' );
 
-//gutenbergs style
 add_theme_support( 'wp-block-styles' );
-
-// add_theme_support('post-thumbnails');
+add_theme_support('post-thumbnails');
 
 // Register Custom Navigation Walker
 require_once get_template_directory() . '/assets/class-wp-bootstrap-navwalker.php';
 
 //REGISTERING WIDGETS
 add_action( 'widgets_init', 'add_sidebar' );
-
 function add_sidebar() {
-
     register_sidebar( array(
         'name' => __( 'Main Sidebar', 'WRRescue' ),
         'id' => 'sidebar-1',
@@ -39,9 +35,7 @@ function add_sidebar() {
     	'after_title'   => '</h2>',
         )
     );
-
 }
-
 // unregister all widgets
 function unregister_default_widgets() {
     unregister_widget('WP_Widget_Pages');
@@ -71,6 +65,8 @@ add_action('widgets_init', 'unregister_default_widgets', 11);
 require get_template_directory() . '/inc/customizer.php';
 
 //search filter
+
+
 
 // function SearchFilter($query) {
 // if ($query->is_search) {
