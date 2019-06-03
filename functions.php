@@ -18,9 +18,17 @@ add_action( 'init', 'register_my_menu' );
 
 add_theme_support( 'wp-block-styles' );
 add_theme_support('post-thumbnails');
+add_theme_support('post-formats', array('image'));
+add_theme_support( 'custom-header' );
 
 // Register Custom Navigation Walker
 require_once get_template_directory() . '/assets/class-wp-bootstrap-navwalker.php';
+
+//excerpt
+function custom_excerpt_length( $length ) {
+	return 20;
+}
+add_filter( 'excerpt_length', 'custom_excerpt_length', 999 );
 
 //REGISTERING WIDGETS
 add_action( 'widgets_init', 'add_sidebar' );
@@ -61,11 +69,71 @@ function unregister_default_widgets() {
 }
 add_action('widgets_init', 'unregister_default_widgets', 11);
 
+//CUSTOM LOGO
+
+function theme_prefix_setup() {
+	
+	add_theme_support( 'custom-logo', array(
+		'height'      => 100,
+		'width'       => 400,
+		'flex-width' => true,
+	) );
+
+}
+add_action( 'after_setup_theme', 'theme_prefix_setup' );
+
+//CUSTOM HEADER IMAGE
+
+$header_info = array(
+    'width'         => 980,
+    'height'        => 400,
+    'default-image' => get_template_directory_uri() . '/assets/img/adoptForeverFriend.png',
+);
+add_theme_support( 'custom-header', $header_info );
+ 
+$header_images = array(
+    'rabbit' => array(
+            'url'           => get_template_directory_uri() . '/assets/img/adoptForeverFriend.png',
+            'thumbnail_url' => get_template_directory_uri() . '/assets/img/adoptForeverFriend.png',
+            'description'   => 'Rabbits',
+    ),
+    'rabbit2' => array(
+            'url'           => get_template_directory_uri() . '/assets/img/foreverFriend.png',
+            'thumbnail_url' => get_template_directory_uri() . '/assets/img/foreverFriend.png',
+            'description'   => 'Rabbits',
+    ),  
+);
+register_default_headers( $header_images );
+
+// $wp_customize->add_control(
+//     new WP_Customize_Control(
+//         $wp_customize,
+//         'your_setting_id',
+//         array(
+//             'label'          => __( 'Dark or light theme version?', 'WRRescue' ),
+//             'section'        => 'your_section_id',
+//             'settings'       => 'your_setting_id',
+//             'type'           => 'radio',
+//             'choices'        => array(
+//                 'dark'   => __( 'Dark' ),
+//                 'light'  => __( 'Light' )
+//             )
+//         )
+//     )
+// );
+
 
 require get_template_directory() . '/inc/customizer.php';
+require get_template_directory() . '/inc/custom_post_types.php';
+
 
 //search filter
-
+function myplugin_register_query_vars( $vars ) {
+    $vars[] = 'author';
+    $vars[] = 'editor';
+    return $vars;
+}
+add_filter( 'query_vars', 'myplugin_register_query_vars' );
 
 
 // function SearchFilter($query) {
@@ -136,3 +204,4 @@ require get_template_directory() . '/inc/customizer.php';
 //      */
 //     return apply_filters( 'get_custom_logo', $html, $blog_id );
 // }
+

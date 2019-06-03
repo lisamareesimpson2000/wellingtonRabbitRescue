@@ -1,5 +1,9 @@
 <?php get_header(); ?>
-<h1>This is from front-page.php</h1>
+<?php //home_url( $path, $scheme ); ?>
+    <!-- $url = home_url();
+    echo esc_url( $url ); -->
+<div class="container">
+
 
 <?php
 $search = get_search_form( $echo );
@@ -22,8 +26,22 @@ $search = get_search_form( $echo );
         <?php if( have_posts() ): ?>
             <div class="col <?php echo $contentorder; ?>">
                 <div class="row">
-                    <?php while( have_posts() ): the_post() ?>
-                        <?php get_template_part( 'content', get_post_format() ); ?>
+                    <?php while( have_posts() ): the_post(); 
+                    if ( is_category( 'about' ) ) {
+
+                        get_template_part( 'content', 'about' );
+                        
+                        } else {
+                        
+                        get_template_part( 'content', get_post_format() );
+                        
+                        }
+                    
+                    ?>
+                    
+
+
+                        <?php //get_template_part( 'content', get_post_format() ); ?>
                     <?php endwhile; ?>
                 </div>
             </div>
@@ -38,7 +56,7 @@ $search = get_search_form( $echo );
         <?php endif; ?>
     </div>
 
-<h3><?php echo get_theme_mod('custom_background_colour_setting'); ?></h3>
+<h3><?php //echo get_theme_mod('custom_background_colour_setting'); ?></h3>
 
     <?php
         $carePostID = get_theme_mod('custom_background_colour_setting');
@@ -63,7 +81,8 @@ $search = get_search_form( $echo );
                      <div class="col-12">
                          <div class="card">
                              <h4><?php the_title(); ?></h4>
-                             <div class="">
+                             <div class="content">
+                                <?php the_content(); ?>
                                  <?php the_excerpt(); ?>
                              </div>
                              <a href="<?php the_permalink(); ?>" class="btn btn-primary btn-block">Check out the Care Post</a>
@@ -72,7 +91,29 @@ $search = get_search_form( $echo );
                  </div>
              <?php endwhile; ?>
          <?php endif; ?>
+<?php
+         // An array of arguments
+$args = array( 'arg_1' => 'val_1', 'arg_2' => 'val_2' );
 
+// The Query
+$the_query = new WP_Query( $args );
+
+// The Loop
+if ( $the_query->have_posts() ) {
+
+    while ( $the_query->have_posts() ) : $the_query->the_post(); 
+        // Your code here
+    endwhile;
+
+} else {
+        // no posts found
+}
+/* Restore original Post Data */
+wp_reset_postdata();
+
+?>
+        
+</div>
    
 
 <?php get_footer(); ?>

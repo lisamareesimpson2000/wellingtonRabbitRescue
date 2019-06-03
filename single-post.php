@@ -8,6 +8,8 @@
                 <div class="col-12">
                     <h2><?php the_title(); ?></h2>
                     <p>Posted: <?php the_date('F j, Y'); ?> at <?php the_time('g:i a'); ?></p>
+                    <?php the_content(); ?>
+                    <?php the_excerpt(); ?>
                     <?php
                         if(get_post_meta(get_the_ID(), 'location', true)){
                             $location = get_post_meta(get_the_ID(), 'location', true);
