@@ -21,3 +21,7 @@ h1{
     height: 30px;
    
 }
+#textarea__contact{
+    width: auto;
+    height: 300px !important;
+}

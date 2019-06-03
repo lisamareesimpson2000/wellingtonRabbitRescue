@@ -3,6 +3,7 @@
         <p>Posted: <?php the_date('F j, Y'); ?> at <?php the_time('g:i a'); ?></p>
             <div class="content">
                 <?php the_content(); ?>
+                <?php the_post_thumbnail(); ?>
             </div>
         <hr>
 </div>

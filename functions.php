@@ -125,6 +125,7 @@ register_default_headers( $header_images );
 
 require get_template_directory() . '/inc/customizer.php';
 require get_template_directory() . '/inc/custom_post_types.php';
+require get_template_directory() . '/inc/custom_fields.php';
 
 
 //search filter
