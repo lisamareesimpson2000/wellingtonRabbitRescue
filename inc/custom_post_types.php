@@ -56,7 +56,7 @@ function add_adoption_post_type(){
         'menu_position' => 6,
         'show_in_rest' => true,
         'menu_icon' => 'dashicons-star-empty',
-        'supports' => array('title', 'editor')
+        'supports' => array('title', 'editor', 'thumbnail')
     );
     register_post_type('Adoption', $args);
 }

@@ -33,8 +33,6 @@
                 'posts_per_page' => -1
             );
             $allCareposts = new WP_Query($args);
-            // var_dump($);
-            // die();
          ?>
          <?php if( $allCareposts->have_posts() ): ?>
              <div class="row">
@@ -60,40 +58,13 @@
                              <?php $cardNumber++; ?>
                          <?php endwhile; ?>
                      </div>
-                     <br>
-                 </div>
-                 <div class="col col-lg-6">
-                     <!-- search -->
-                    <?php
-                        $search = get_search_form( $echo );
-                        // var_dump($search);
-                        // die();
-                    ?>
-                    <?php
-                        // An array of arguments
-                        $args = array( 'arg_1' => 'val_1', 'arg_2' => 'val_2' );
+                <br>
+            </div>
+        </div>
+</div>
+    
 
-                        // The Query
-                        $the_query = new WP_Query( $args );
-
-                        // The Loop
-                        if ( $the_query->have_posts() ) {
-
-                            while ( $the_query->have_posts() ) : $the_query->the_post(); 
-                                // Your code here
-                            endwhile;
-
-                        } else {
-                                // no posts found
-                        }
-                        /* Restore original Post Data */
-                        wp_reset_postdata();
-
-                        ?>
-                 </div>
-             </div>
-             </div>
-         <?php endif; ?>
+<?php endif; ?>
 
 
 

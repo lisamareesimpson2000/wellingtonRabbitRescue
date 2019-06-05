@@ -35,15 +35,6 @@
 		?>
 	</div>
 </nav>
-
-<!-- <p>This is from header</p> -->
-
-<div >
-<?php //$header_images_id = get_theme_mod('custom-header');
-//var_dump(defaultsHeader); 
-//$header_images_url = wp_get_attachment_image_url( $header_images_id , 'full' );
-				//echo '<img src="' . esc_url( $header_images_url ) . '" alt="banner">';
-				?>
-<img class="img-fluid mx-auto d-block w-100" alt="responsive" src="<?php header_image(); ?>" width="<?php echo absint( get_custom_header()->width ); ?>" height="<?php echo absint( get_custom_header()->height ); ?>">
-    <!-- <img class="w-100"src="<?php //echo get_stylesheet_directory_uri(); ?>/assets/img/bannerRabbit.png" alt="rabbits"> -->
+<div>
+	<img class="img-fluid mx-auto d-block w-100" alt="responsive" src="<?php header_image(); ?>" width="<?php echo absint( get_custom_header()->width ); ?>" height="<?php echo absint( get_custom_header()->height ); ?>">
 </div>

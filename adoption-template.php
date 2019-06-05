@@ -12,7 +12,7 @@
         <div class="row">
             <div class="col">
                 <h2><?php the_title(); ?></h2>
-                <!-- <p>Posted: <?php //the_date('F j, Y'); ?> at <?php the_time('g:i a'); ?></p> -->
+              
             </div>
         </div>
 
@@ -48,8 +48,14 @@
                                  </h2>
                                </div>
                                <div id="collapse<?php echo $cardNo; ?>" class="collapse"  data-parent="#accordionExample">
+                               
                                  <div class="card-body">
+                                 <div class="">
+                                     <?php the_post_thumbnail( 'thumbnail' ); ?>
+                                     </div>
                                      <?php the_content(); ?>
+                                       <small>Posted: <?php the_date('F j, Y'); ?> at <?php the_time('g:i a'); ?></small> 
+                                    
                                  </div>
                                </div>
                              </div>
